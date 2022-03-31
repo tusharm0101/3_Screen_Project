@@ -1,32 +1,56 @@
 import React from "react";
-import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { AntDesign, FontAwesome } from '@expo/vector-icons';
+import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { AntDesign, Entypo } from '@expo/vector-icons';
+
 
 const LoginScreen = props => {
     return (
+        
+    <KeyboardAvoidingView
+      behavior="padding"
+      keyboardVerticalOffset={50}
+      style={styles.Container}
+    >
         <View style={styles.screen}>
+            <ScrollView>
             <View style={styles.text}><Text style={styles.texta}>Hey there,</Text></View>
             <View style={styles.textb}><Text style={styles.textc}>Welcome Back</Text></View>
             <View style={styles.login}>
                 <AntDesign name="mail" size={18} color="gray" />
-                <TextInput style={styles.TextInput} placeholder="Email" />
-            </View>
+                <TextInput 
+                    style={styles.TextInput} 
+                    placeholder="Email"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    required
+                    email 
+                />        
+            </View>     
             <View style={styles.login}>
                 <AntDesign name="lock" size={18} color="gray" />
                 <TextInput 
                     style={styles.TextInput} 
                     placeholder="password" 
-
-                />
-            </View>
-            <View style={styles.center}>
+                    keyboardType="default"
+                    autoCapitalize="none"
+                    secureTextEntry={true}
+                    required
+                    minLength={5}
+                /> 
+                <Entypo style={{marginLeft: 220}} name="eye-with-line" size={18} color="gray" />
+            </View>    
+            <TouchableOpacity style={styles.center}>
                 <Text style={styles.forget}>Forget your password?</Text>
-            </View>
-            <View style={styles.Button}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.Button} onPress={() => {
+                props.navigation.navigate('Detail');
+                }}
+            >
                 <AntDesign name="login" size={18} color="white" />
-                <Button title="Login" color={"white"} onPress={() => {}} />
-            </View>
+                <Button title="Login" color={"white"} onPress={() => {
+                    props.navigation.navigate('Detail');
+                }} />
+            </TouchableOpacity>
             <View style={styles.line}>
                 <View style={{ flex: 1, height: 0.5, backgroundColor: 'gray' }} />
                 <View>
@@ -34,27 +58,38 @@ const LoginScreen = props => {
                 </View>
                 <View style={{ flex: 1, height: 0.5, backgroundColor: 'gray' }} />
             </View>
-            <View style={styles.logo}>
-                <AntDesign style={styles.logoContainer} name="google" size={24} color='black' />
-                <FontAwesome style={styles.logoContainer} name="facebook" size={24} color="blue" />
-            </View>
+            <View style={styles.logo}><TouchableOpacity >
+                <Image source={require('../assets/download.png')} style={styles.Image} />
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Image source={require('../assets/facebook.png')} style={styles.Image} />
+            </TouchableOpacity></View>
             <View style={styles.end}>
                 <Text>Don't have an account yet?</Text>
                 <TouchableOpacity onPress={() => {
-                        props.navigation.navigate({ routeName: 'Register'});
+                         props.navigation.navigate('SignUp');
                     }} 
-                ><Text>Register</Text>
+                ><Text style={{marginLeft:5, color:'#dda0dd'}}>Register</Text>
                 </TouchableOpacity>
             </View>
+            </ScrollView>
         </View>
+        
+        </KeyboardAvoidingView>
+       
     );
+    
 };
 
 const styles = StyleSheet.create({
+    Container: {
+        flex: 1     
+    },
     screen: {
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: 'white'      
+        backgroundColor: 'white',
+        paddingVertical: 40     
     },
     text: {
         marginTop: 30,
@@ -110,6 +145,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         marginTop: 30,
+    },
+    Image: {
+        height: 50,
+        width: 50,
+        borderColor: 'gray',
+        borderWidth: 0.4,
+        borderRadius: 10,
+        marginHorizontal: 20
     },
     logoContainer: {
         borderColor: 'gray',
