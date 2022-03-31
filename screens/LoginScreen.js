@@ -4,8 +4,7 @@ import { AntDesign, Entypo } from '@expo/vector-icons';
 
 
 const LoginScreen = props => {
-    return (
-        
+    return (   
     <KeyboardAvoidingView
       behavior="padding"
       keyboardVerticalOffset={50}
@@ -29,7 +28,7 @@ const LoginScreen = props => {
             <View style={styles.login}>
                 <AntDesign name="lock" size={18} color="gray" />
                 <TextInput 
-                    style={styles.TextInput} 
+                    style={{...styles.TextInput, justifyContent: 'space-evenly'}} 
                     placeholder="password" 
                     keyboardType="default"
                     autoCapitalize="none"

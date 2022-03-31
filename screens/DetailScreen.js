@@ -17,28 +17,32 @@ const DetailScreen = props => {
             <Image source={require('../assets/Vector-Section.png')} style={styles.Image} />
             <View style={styles.Center}><Text style={styles.bold}>Let's complete your profile</Text></View>
             <View style={styles.Center}><Text style={styles.Text}>It will help us to know more about you!</Text></View>
+           
+           <View>
             <View style={styles.Row}>
                 <MaterialCommunityIcons name="gender-male-female-variant" size={24} color="gray" />
-                <Gender placeholder='Choose Gender'/>
+                <Gender  />
             </View>
-            
+            </View>
             <View style={styles.Row}>
                 <EvilIcons name="calendar" size={24} color="gray" />
                 <DOB />
             </View>
-            <View style={styles.Row}>
+            <View style={{...styles.Row,justifyContent:'space-evenly'}}>
                 <MaterialCommunityIcons name="weight-kilogram" size={24} color="gray" />
                 <TextInput 
                     placeholder="Your Weight" 
-                    keyboardType="number-pad"    
+                    keyboardType="decimal-pad"  
+                    maxLength={3}  
                 />
                 <Text style={styles.End}>KG</Text>
             </View>
-            <View style={styles.Row}>
+            <View style={{...styles.Row,justifyContent:'space-evenly'}}>
                 <MaterialIcons name="height" size={24} color="gray" />
                 <TextInput 
                     placeholder="Your Height" 
-                    keyboardType="number-pad"     
+                    keyboardType="decimal-pad"  
+                    maxLength={3}   
                 />
                 <Text style={styles.End}>CM</Text>
             </View>
@@ -49,6 +53,7 @@ const DetailScreen = props => {
             </ScrollView>
         </View>
         </KeyboardAvoidingView> 
+
     );
 };
 
@@ -85,12 +90,18 @@ const styles = StyleSheet.create({
         backgroundColor: '#f0f8ff',
         marginBottom: 15,
         borderRadius: 10,
-        alignItems: 'center'
+        alignItems: 'center',
+        
     },
     End: {
         marginLeft: 200,
         backgroundColor: '#dda0dd',
         color: 'white',
+        fontSize: 12,
+        padding: 10,
+        borderRadius: 10,
+        overflow: 'hidden',
+        
     },
     Button: {
         backgroundColor: '#6495ed',

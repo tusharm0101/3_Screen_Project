@@ -1,26 +1,27 @@
-import React, {useState} from "react";
-import { View } from "react-native";
-import { RadioButton} from 'react-native-paper';
+import React from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import SelectDropdown from "react-native-select-dropdown";
+import { AntDesign } from '@expo/vector-icons';
 
 const Gender = () => {
-    const [checked, setChecked] = useState('Male');
 
+    const gender = ['Male', 'Female']
     return (
-        <View>
-            <RadioButton 
-                placeholder='choose Gender'
-                value={'Male'}
-                color="black"
-                status={ checked === 'Male' ? 'checked' : 'unchecked'}
-                onPress={(value) => {setChecked(value)}}
-            />
-            <RadioButton 
-                value={'Female'}
-                status={ checked === 'Female' ? 'checked' : 'unchecked'}
-                onPress={(value) => {setChecked(value)}}
-            />
-        </View>
+        <TouchableOpacity style={styles.Gender} >
+        <SelectDropdown 
+            data={gender}
+            onSelect={() => {(gender)}}
+        />
+        <AntDesign name="down" size={24} color="black"/>
+        </TouchableOpacity>
     );
 };
+
+const styles = StyleSheet.create({
+    Gender: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+});
 
 export default Gender;
